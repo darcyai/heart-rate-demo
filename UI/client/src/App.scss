@@ -1,0 +1,163 @@
+@import './scss/font-gilroy.scss';
+
+#root {
+  min-height: 100vh;
+  background: #012D44 0% 0% no-repeat padding-box;
+  color: white;
+  font-family: 'Gilroy';
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar {
+  background: #002131 0% 0% no-repeat padding-box;
+  color: white;
+  font-family: 'Gilroy';
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .links {
+    display: none;
+    align-items: center;
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+      font: normal normal 500 12px/16px Gilroy;
+      letter-spacing: 0.24px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      opacity: 1;
+      svg {
+        width: 12px;
+        color: #ffffff;
+        path {
+          fill: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  font: normal normal 400 12px/24px Gilroy;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  opacity: 1;
+  img {
+    width: 100%;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 60px
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row-section {
+  border-left: 1px solid #A9B2BC80;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 12px;
+  width: auto;
+  svg {
+    width: 44px;
+    height: 44px;
+  }
+  .number {
+    text-align: left;
+    font: normal normal normal 42px/16px Gilroy;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    min-width: 66px;
+    text-align: center;
+  }
+  .label {
+    text-align: left;
+    font: normal normal 500 12px/18px Gilroy;
+    letter-spacing: -0.24px;
+    color: #A9B2BC;
+    text-transform: uppercase;
+    opacity: 1;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  max-width: 784px;
+}
+
+.info-content {
+  text-align: left;
+  font: normal normal normal 13px/21px Gilroy;
+  letter-spacing: 0.26px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.info-title {
+  font: normal normal 500 13px/24px Gilroy;
+  letter-spacing: 0.26px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.chart-container {
+  width: 100%;
+  height: 200px;
+  .chart {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: 600px;
+  }
+
+  .row {
+    flex-direction: row;
+    gap: 60px;
+  }
+
+  .navbar .links {
+    display: none;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "GraphUIServer",
+  "version": "1.0.0",
+  "description": "Receives messages and displays them as a web page.",
+  "author": "Eclipse ioFog",
+  "license": "EPL-2.0",
+  "dependencies": {
+    "@iofog/nodejs-sdk": "0.0.x",
+    "express": "^4.17.0",
+    "lodash": "^4.17.11"
+  },
+  "scripts": {
+    "install-all": "npm i && cd client && npm i",
+    "build": "cd client && npm run build",
+    "start": "node index.js",
+    "dev": "concurrently 'PORT=5000 MOCK=true nodemon index.js' 'cd client && npm start'"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
+}

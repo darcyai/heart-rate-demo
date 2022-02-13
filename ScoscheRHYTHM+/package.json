@@ -1,0 +1,15 @@
+{
+  "name": "ScoscheHeartRate",
+  "version": "1.0.0",
+  "description": "Look for Scosche brand heart rate monitors over Bluetooth Low Energy, connect to them, gather the heart rate data, and report it onward as an ioMessage.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-iofog/example-microservices.git"
+  },
+  "author": "Eclipse ioFog",
+  "license": "EPL-2.0",
+  "dependencies": {
+    "http": "0.0.0",
+    "@iofog/nodejs-sdk": "0.0.x"
+  }
+}
