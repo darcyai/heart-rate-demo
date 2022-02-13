@@ -5,6 +5,7 @@ import logo from './logo.png'
 import './App.scss'
 import { ReactComponent as Logo } from './assets/icons/logo.svg'
 import { ReactComponent as DocIcon } from './assets/icons/docs.svg'
+import { ReactComponent as GithubIcon } from './assets/icons/github.svg'
 import { ReactComponent as HeartRateIcon } from './assets/icons/heart-rate.svg'
 import { ReactComponent as MinHeartRateIcon } from './assets/icons/min-heart-rate.svg'
 import { ReactComponent as MaxHeartRateIcon } from './assets/icons/max-heart-rate.svg'
@@ -136,7 +137,8 @@ function App () {
       <nav className='navbar navbar-expand-lg navbar-light'>
         <a className='navbar-brand logo' href='/'><Logo /><div>DARCY HEALTHCARE WEARABLES DEMO</div></a>
         <div className='links'>
-          <a className='link' href="" target="_blank"><DocIcon /><div>Build your own darcy apps</div></a>
+          {/* <a className='link' href="" target="_blank"><DocIcon /><div>Build your own darcy apps</div></a> */}
+          <a className='link' href="https://github.com/darcyai/healthcare-wearable-demo" target="_blank"><GithubIcon /><div>Browse code</div></a>
         </div>
       </nav>
       <div className='container'>
