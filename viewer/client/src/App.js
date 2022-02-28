@@ -135,10 +135,10 @@ function App () {
   return (
     <div>
       <nav className='navbar navbar-expand-lg navbar-light'>
-        <a className='navbar-brand logo' href='/'><Logo /><div>DARCY HEALTHCARE WEARABLES DEMO</div></a>
+        <a className='navbar-brand logo' href='/'><Logo /><div>DARCY HEART RATE DEMO</div></a>
         <div className='links'>
           {/* <a className='link' href="" target="_blank"><DocIcon /><div>Build your own darcy apps</div></a> */}
-          <a className='link' href="https://github.com/darcyai/healthcare-wearable-demo" target="_blank"><GithubIcon /><div>Browse code</div></a>
+          <a className='link' href="https://github.com/darcyai/heart-rate-demo" target="_blank"><GithubIcon /><div>Browse code</div></a>
         </div>
       </nav>
       <div className='container'>
