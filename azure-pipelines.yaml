@@ -1,0 +1,103 @@
+trigger:
+  tags:
+    include:
+      - v*
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - README.md
+      - CHANGELOG.md
+pr: none
+  
+jobs:
+  - job: DarcyHeartRateDemoImages
+
+    timeoutInMinutes: 240
+  
+    strategy:
+      matrix:
+        amd64:
+          poolImageName: 'Azure Pipelines'
+          imageTagSuffix: 'amd64'
+          dockerFile: 'Dockerfile_x86'
+        arm32v7:
+          poolImageName: 'RPi'
+          imageTagSuffix: 'arm32v7'
+          dockerFile: 'Dockerfile_arm'
+        arm64v8:
+          poolImageName: 'build-farm-coral'
+          imageTagSuffix: 'arm64v8'
+          dockerFile: 'Dockerfile_arm'
+
+    pool: $(poolImageName)
+
+    variables:
+      imageName: 'darcyai/heart-rate-demo'
+      imageTag: 'dev'
+
+    steps:
+      - script: |
+          RELEASE_TAG=$(git describe --tags --abbrev=0)
+          echo "##vso[task.setvariable variable=imageTag]$RELEASE_TAG"
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+        displayName: 'Set image tag'
+
+      - template: ./docker-task-template.yml
+        parameters:
+          imageName: '$(imageName)-base'
+          imageTag: $(imageTag)-$(imageTagSuffix)
+          dockerFile: 'generator/$(dockerFile)'
+          step: 'generator'
+
+      - template: ./docker-task-template.yml
+        parameters:
+          imageName: '$(imageName)-base'
+          imageTag: $(imageTag)-$(imageTagSuffix)
+          dockerFile: 'viewer/$(dockerFile)'
+          step: 'viewer'
+  
+  - job: DarcyHeartRateDemoDockerManifest
+    dependsOn: DarcyHeartRateDemoImages
+
+    timeoutInMinutes: 240
+  
+    strategy:
+      matrix:
+        generator:
+          step: 'generator'
+        viewer:
+          step: 'viewer'
+
+    pool: 'Azure Pipelines'
+
+    variables:
+      imageName: 'darcyai/darcy-ai'
+      imageTag: 'dev'
+      DOCKER_CLI_EXPERIMENTAL: enabled
+
+    steps:
+      - task: Docker@2
+        displayName: Login to Dockerhub
+        inputs:
+          command: login
+          containerRegistry: DarcyAI-Dockerhub
+
+      - script: |
+          docker pull $(imageName)-$(step):$(imageTag)-amd64
+          docker pull $(imageName)-$(step):$(imageTag)-arm32v7
+          docker pull $(imageName)-$(step):$(imageTag)-arm64v8
+        displayName: 'Pull $(step) amd64, arm32v7, and arm64v8 docker images'
+
+      - script: |
+          docker manifest create \
+            $(imageName)-$(step):$(imageTag) \
+            --amend $(imageName)-$(step):$(imageTag)-amd64 \
+            --amend $(imageName)-$(step):$(imageTag)-arm32v7 \
+            --amend $(imageName)-$(step):$(imageTag)-arm64v8
+        displayName: 'Create $(step) image manifest'
+
+      - script: |
+          docker manifest push $(imageName)-$(step):$(imageTag)
+        displayName: 'Push $(step) image manifest'

@@ -1,11 +1,11 @@
 kind: Application
 apiVersion: iofog.org/v3
 metadata:
-  name: edgeworx-heart-rate
+  name: darcy-heart-rate-demo
 spec:
   microservices:
     # Custom micro service that will connect to Scosche heart rate monitor via Bluetooth
-    - name: "monitor"
+    - name: "data-generator"
       agent:
         name: "{% assign agent = \"\" | findAgent | first %}{{ agent.name }}"
       images:
