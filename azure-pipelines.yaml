@@ -46,14 +46,14 @@ jobs:
 
       - template: ./docker-task-template.yml
         parameters:
-          imageName: '$(imageName)-base'
+          imageName: '$(imageName)-generator'
           imageTag: $(imageTag)-$(imageTagSuffix)
           dockerFile: 'generator/$(dockerFile)'
           step: 'generator'
 
       - template: ./docker-task-template.yml
         parameters:
-          imageName: '$(imageName)-base'
+          imageName: '$(imageName)-viewer'
           imageTag: $(imageTag)-$(imageTagSuffix)
           dockerFile: 'viewer/$(dockerFile)'
           step: 'viewer'

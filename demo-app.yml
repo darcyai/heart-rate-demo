@@ -9,8 +9,8 @@ spec:
       agent:
         name: "{% assign agent = \"\" | findAgent | first %}{{ agent.name }}"
       images:
-        arm: "edgeworx/healthcare-heart-rate:arm-v1"
-        x86: "edgeworx/healthcare-heart-rate:x86-v1"
+        arm: "darcyai/heart-rate-demo-generator"
+        x86: "darcyai/heart-rate-demo-generator"
       container:
         rootHostAccess: false
         ports: []
@@ -23,8 +23,8 @@ spec:
       agent:
         name: "{% assign agent = \"\" | findAgent | last %}{{ agent.name }}"
       images:
-        arm: "edgeworx/healthcare-heart-rate-ui-arm:1.0.0"
-        x86: "edgeworx/healthcare-heart-rate-ui-x86:1.0.0"
+        arm: "darcyai/heart-rate-demo-viewer"
+        x86: "darcyai/heart-rate-demo-viewer"
       container:
         rootHostAccess: false
         ports:
