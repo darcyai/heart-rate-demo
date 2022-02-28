@@ -18,7 +18,7 @@ steps:
       tags: |
         ${{ parameters.imageTag }}
       arguments: --build-arg BASE_IMAGE_TAG=${{ parameters.imageTag }}
-    workingDirectory: ${{ parameters.step }}
+    buildContext: ./${{ parameters.step }}
   - task: Docker@2
     displayName: Push ${{ parameters.step }} image
     inputs:
@@ -28,4 +28,4 @@ steps:
       Dockerfile: ${{ parameters.dockerFile }}
       tags: |
         ${{ parameters.imageTag }}
-    workingDirectory: ${{ parameters.step }}
+    buildContext: ./${{ parameters.step }}
