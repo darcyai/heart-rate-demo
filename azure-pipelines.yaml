@@ -10,6 +10,9 @@ trigger:
       - README.md
       - CHANGELOG.md
 pr: none
+variables: 
+  imageName: 'darcyai/heart-rate-demo'
+  imageTag: 'dev'
   
 jobs:
   - job: DarcyHeartRateDemoImages
@@ -32,11 +35,6 @@ jobs:
           dockerFile: 'Dockerfile'
 
     pool: $(poolImageName)
-
-    variables:
-      imageName: 'darcyai/heart-rate-demo'
-      imageTag: 'dev'
-
     steps:
       - script: |
           RELEASE_TAG=$(git describe --tags --abbrev=0)
@@ -73,8 +71,6 @@ jobs:
     pool: 'Azure Pipelines'
 
     variables:
-      imageName: 'darcyai/darcy-ai'
-      imageTag: 'dev'
       DOCKER_CLI_EXPERIMENTAL: enabled
 
     steps:
