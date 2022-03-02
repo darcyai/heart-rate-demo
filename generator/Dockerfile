@@ -1,4 +1,4 @@
-FROM iofog/nodejs-arm
+FROM node:14-alpine
 
 COPY . /src
 RUN cd /src; npm install
