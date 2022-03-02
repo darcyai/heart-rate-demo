@@ -21,15 +21,15 @@ jobs:
         amd64:
           poolImageName: 'Azure Pipelines'
           imageTagSuffix: 'amd64'
-          dockerFile: 'Dockerfile_x86'
+          dockerFile: 'Dockerfile'
         arm32v7:
           poolImageName: 'RPi'
           imageTagSuffix: 'arm32v7'
-          dockerFile: 'Dockerfile_arm'
+          dockerFile: 'Dockerfile'
         arm64v8:
           poolImageName: 'build-farm-coral'
           imageTagSuffix: 'arm64v8'
-          dockerFile: 'Dockerfile_arm'
+          dockerFile: 'Dockerfile'
 
     pool: $(poolImageName)
 
