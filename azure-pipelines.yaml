@@ -23,7 +23,7 @@ jobs:
           imageTagSuffix: 'amd64'
           dockerFile: 'Dockerfile'
         arm32v7:
-          poolImageName: 'RPi'
+          poolImageName: 'build-farm-rpi4'
           imageTagSuffix: 'arm32v7'
           dockerFile: 'Dockerfile'
         arm64v8:
