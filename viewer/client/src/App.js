@@ -135,7 +135,7 @@ function App () {
   return (
     <div>
       <nav className='navbar navbar-expand-lg navbar-light'>
-        <a className='navbar-brand logo' href='/'><Logo /><div>DARCY HEART RATE DEMO</div></a>
+        <a className='navbar-brand logo' href='/'><Logo /></a>
         <div className='links'>
           {/* <a className='link' href="" target="_blank"><DocIcon /><div>Build your own darcy apps</div></a> */}
           <a className='link' href="https://github.com/darcyai/heart-rate-demo" target="_blank"><GithubIcon /><div>Browse code</div></a>
