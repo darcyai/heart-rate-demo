@@ -26,6 +26,17 @@ let currentConfig = { 'test_mode': true, 'data_label': 'Anonymous Person' }
 let deviceMac = ''
 let notifyURL = ''
 
+// Quick JSON logger
+const jsonLogger = (logger, level) => (...args) => {
+  const message = args.map(arg => typeof arg === typeof {} ? JSON.stringify(arg) : arg.toString()).join(' ')
+  logger({ time: Date.now(), level, message })
+}
+
+console.error = jsonLogger(console.error, 'error')
+console.info = jsonLogger(console.info, 'info')
+console.debug = jsonLogger(console.debug, 'debug')
+console.warn = jsonLogger(console.warn, 'warn')
+
 ioFogClient.init('iofog', 54321, null,
   function heartRateMain () {
     // first thing first is to get config from ioFog
@@ -64,7 +75,7 @@ ioFogClient.init('iofog', 54321, null,
 )
 
 function fetchConfig () {
-  console.log('Reading config')
+  console.info('Reading config')
   ioFogClient.getConfig(
     {
       'onBadRequest':
@@ -92,7 +103,7 @@ function fetchConfig () {
 }
 
 function runProcess () {
-  console.log('Retrieving heart rate sensor reading')
+  console.info('Retrieving heart rate sensor reading')
 
   // Check if we are in test mode. If so, then skip doing any real work and send a randomly generated heart rate value with the proper flags
   if (currentConfig.test_mode) {
@@ -105,7 +116,7 @@ function runProcess () {
     jsonOut.units = 'bpm'
     jsonOut.device_mac_address = 'SIMULATED'
 
-    console.log('test-mode = true, generating mock sensor data..')
+    console.info('test-mode = true, generating mock sensor data..')
     sendMessage(JSON.stringify(jsonOut))
   } else {
     // Check if we have a device MAC address. If not, then scan the BLE radio and try to find an appropriate device and grab the MAC address, then continue
@@ -173,7 +184,7 @@ function runProcess () {
 
           if (error) {
             bleAvailable = false
-            console.log('Error connecting to Bluetooth Low Energy hardware abstraction API:', error)
+            console.info('Error connecting to Bluetooth Low Energy hardware abstraction API:', error)
           } else {
             var respObj = JSON.parse(body)
             if (response.statusCode === 200) {
@@ -215,7 +226,7 @@ function runProcess () {
             jsonOut.units = 'bpm'
             jsonOut.device_mac_address = ''
 
-            console.log('Sending dummy sensor reading via ioMessage')
+            console.info('Sending dummy sensor reading via ioMessage')
             console.debug(JSON.stringify(jsonOut, null, 2))
             sendMessage(JSON.stringify(jsonOut))
           }
@@ -234,7 +245,7 @@ function runProcess () {
 
           if (error) {
             bleAvailable = false
-            console.log('Error connecting to Bluetooth Low Energy hardware abstraction API:', error)
+            console.info('Error connecting to Bluetooth Low Energy hardware abstraction API:', error)
           } else {
             var respObj = JSON.parse(body)
             if (response.statusCode === 200) {
