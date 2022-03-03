@@ -20,6 +20,17 @@ const PORT = process.env.PORT || 80
 const messageLimit = 100
 const msgsBuffer = []
 
+// Quick JSON logger
+const jsonLogger = (logger, level) => (...args) => {
+  const message = args.map(arg => typeof arg === typeof {} ? JSON.stringify(arg) : arg.toString()).join(' ')
+  logger({ time: Date.now(), level, message })
+}
+
+console.error = jsonLogger(console.error, 'error')
+console.info = jsonLogger(console.info, 'info')
+console.debug = jsonLogger(console.debug, 'debug')
+console.warn = jsonLogger(console.warn, 'warn')
+
 // Generate mock data
 if (process.env.MOCK) {
   setInterval(() => {
