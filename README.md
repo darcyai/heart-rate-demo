@@ -1,9 +1,8 @@
-# Healthcare Demo - Heart Rate from Bluetooth Wearable
+# Darcy Heart Rate Demo
 
 This repository contains microservices and packaging code for starting up a healthcare demonstration on Darcy Cloud. 
 The demonstration detects the presence of a [Schosche RHYTHM+ wearable](https://www.scosche.com/catalog/product/view/id/9140) 
-via Bluetooth Low Energy and then gathers the heart rate data and assigns the configured name to the data and passes it 
-on to a JSON Viewer as an ioMessage. 
+via Bluetooth Low Energy and then gathers the heart rate data and passes that onto a graphical UI. 
 
 This demo showcases the power of the [ioFog RESTBlue](https://github.com/eclipse-iofog/restblue) microservice 
 which abstracts the Bluetooth Low Energy capabilities of the edge node and makes them available via a REST API for easy 
