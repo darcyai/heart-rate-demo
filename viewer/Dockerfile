@@ -5,7 +5,7 @@ WORKDIR /src
 RUN npm i
 RUN npm run build
 
-FROM node:14-alpine as PROD
+FROM node:14 as PROD
 WORKDIR /src
 COPY package.json .
 RUN npm install --prod
