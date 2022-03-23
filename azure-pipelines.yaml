@@ -37,19 +37,19 @@ jobs:
     pool: $(poolImageName)
     steps:
       - script: |
-          RELEASE_TAG=$(git describe --tags --abbrev=0)
+          RELEASE_TAG=$(git describe --tags --abbrev=0 | sed "s|v||g")
           echo "##vso[task.setvariable variable=imageTag]$RELEASE_TAG"
         condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
         displayName: 'Set image tag'
 
-      - template: ./docker-task-template.yml
+      - template: ./pipeline/docker-task-template.yml
         parameters:
           imageName: '$(imageName)-generator'
           imageTag: $(imageTag)-$(imageTagSuffix)
           dockerFile: 'generator/$(dockerFile)'
           step: 'generator'
 
-      - template: ./docker-task-template.yml
+      - template: ./pipeline/docker-task-template.yml
         parameters:
           imageName: '$(imageName)-viewer'
           imageTag: $(imageTag)-$(imageTagSuffix)
@@ -74,6 +74,11 @@ jobs:
       DOCKER_CLI_EXPERIMENTAL: enabled
 
     steps:
+      - script: |
+          RELEASE_TAG=$(git describe --tags --abbrev=0 | sed "s|v||g")
+          echo "##vso[task.setvariable variable=imageTag]$RELEASE_TAG"
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+        displayName: 'Set image tag'
       - task: Docker@2
         displayName: Login to Dockerhub
         inputs:
