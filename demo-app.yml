@@ -4,7 +4,7 @@ metadata:
   name: darcy-heart-rate-demo
 spec:
   microservices:
-    # Custom micro service that will connect to Scosche heart rate monitor via Bluetooth
+    # Custom micro service that will simulate sensor data or connect to a heart rate monitor via Bluetooth
     - name: "data-generator"
       agent:
         name: "{% assign agent = \"\" | findAgent | first %}{{ agent.name }}"
@@ -29,7 +29,7 @@ spec:
         rootHostAccess: false
         ports:
           # The ui will be listening on port 80 (internal).
-          - external: 5005 # You will be able to access the ui on <AGENT_IP>:5000
+          - external: 5005 # You will be able to access the ui on <NODE_IP_ADDRESS>:5005
             internal: 80 # The ui is listening on port 80. Do not edit this.
             public:
               schemes:

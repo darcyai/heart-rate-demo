@@ -1,34 +1,23 @@
 # Darcy Heart Rate Demo
 
-This repository contains microservices and packaging code for starting up a healthcare demonstration on Darcy Cloud. 
-The demonstration detects the presence of a [Schosche RHYTHM+ wearable](https://www.scosche.com/catalog/product/view/id/9140) 
-via Bluetooth Low Energy and then gathers the heart rate data and passes that onto a graphical UI. 
-
-This demo showcases the power of the [ioFog RESTBlue](https://github.com/eclipse-iofog/restblue) microservice 
-which abstracts the Bluetooth Low Energy capabilities of the edge node and makes them available via a REST API for easy 
-connection and programming.  
+This repository contains microservices and packaging code for starting up a healthcare demonstration on Darcy Cloud. The demo application will deploy two microservices that work together and share data. One microservice produces heartrate data and sends it outward on the Edge Compute Network (ECN) that is created between the two microservices. The other microservice hosts a web UI for viewing the heartrate data. The UI microservice receives the heartrate data because it is attached to the ECN shared with the data source microservice. This is a powerful edge computing concept demonstrated by two simple microservices working together.
 
 ## Requirements
 
 Before running the script you must:
  * Have an Darcy Cloud project deployment with at least one node
  
-### Configuration of the Scosche RHYTHM+ sensor adapter microservice
+### Configuration of the sensor simulator microservice
 
-Set the config in Controller for this microservice if you want to either activate the "simulation mode" or if you want 
-to label the heart rate data. If you set "test_mode" to true then the microservice will not look for a Bluetooth device 
-but will send randomized heart rate data instead with the label you specify. 
+Set the config for this microservice if you want to label the heart rate data. Edit the [demo-app.yml](./demo-app.yml) file in order to change the configuration. Replace "Anonymous Person" with any data label you like.
 
 ```
-{
-    "data_label":"Your Name",
-    "test_mode":false
-}
+      config:
+        # data will be mocked
+        test_mode: true
+        data_label: "Anonymous Person"
 ```
-
-The default values are "true" and "Anonymous Person" for the config so you will get that if you don't set the config.
 
 ### Viewing the sensor readings
 
-Once the Demo is running, the JSON output can be viewed by connecting to the JSON-REST-API micro service. You will be 
-able to access the viewer on `<AGENT_IP>:5000`.
+Once the demo is running, you can access the web UI locally by visiting `http://NODE_IP_ADDRESS:5005` where "NODE_IP_ADDRESS" is the IP address of your edge node. You can also access the web UI by clicking on the "public port" link in the Darcy Cloud when viewing the details of the deployed application.
