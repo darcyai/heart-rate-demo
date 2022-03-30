@@ -5,7 +5,7 @@ This repository contains microservices and packaging code for starting up a heal
 ## Requirements
 
 Before running the script you must:
- * Have an Darcy Cloud project deployment with at least one node
+ * Have an [Darcy Cloud](http://cloud.darcy.ai) project deployment with at least one node
  
 ### Configuration of the sensor simulator microservice
 
