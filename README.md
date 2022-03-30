@@ -20,4 +20,4 @@ Set the config for this microservice if you want to label the heart rate data. E
 
 ### Viewing the sensor readings
 
-Once the demo is running, you can access the web UI locally by visiting `http://NODE_IP_ADDRESS:5005` where "NODE_IP_ADDRESS" is the IP address of your edge node. You can also access the web UI by clicking on the "public port" link in the Darcy Cloud when viewing the details of the deployed application.
+Once the demo is running, you can access the web UI locally by visiting `http://NODE_IP_ADDRESS:5005` where "NODE_IP_ADDRESS" is the IP address of your edge node. 
