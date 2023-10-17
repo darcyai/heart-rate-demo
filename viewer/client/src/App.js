@@ -167,7 +167,7 @@ function App () {
             <div className='info'>
               <div className='info-title'>ABOUT THIS DEMO APP</div>
               <div className='info-content'>
-                This demo app is an example of a local heart rate sensor (edge node 1) sending data to a nearby data collector (edge node 2), then sharing via automatic public port to the cloud. A similar technique could be used to gather and share any data between any number of edge nodes with limited connectivity (or to reduce data cost).
+                This demo app is an example of a local heart rate sensor (edge node 1) sending data to a nearby data collector (edge node 2). A similar technique could be used to gather and share any data between any number of edge nodes with limited connectivity (or to reduce data cost).
               </div>
             </div>
           </div>
